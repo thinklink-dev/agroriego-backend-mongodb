@@ -1,0 +1,27 @@
+{
+  "name": "agroriego-backend-mongodb",
+  "version": "1.0.0",
+  "description": "MongoDB - Express - NodeJS Backend for AgroRIEGO IoT Solution",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinklink-dev/agroriego-backend-mongodb.git"
+  },
+  "author": "Think-Link",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinklink-dev/agroriego-backend-mongodb/issues"
+  },
+  "homepage": "https://github.com/thinklink-dev/agroriego-backend-mongodb#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.18",
+    "nodemon": "^2.0.7"
+  }
+}
