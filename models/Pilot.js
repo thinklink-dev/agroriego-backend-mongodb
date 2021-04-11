@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const PilotSchema = mongoose.Schema({
-    humedadSensor1: {
-        type: Number,
+    nodo: {
+        type: String,
         required: true
     },
-    humedadSensor2: {
+    humedad: {
         type: Number,
         required: true
     },

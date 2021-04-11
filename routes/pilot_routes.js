@@ -19,16 +19,14 @@ router.get('/:pilotId', async(req, res) => {
         res.json(pilot);    
     } catch (err) {
         res.json({ message: err });
-    }
-    
-    
+    }       
 });
 
 // Insert Data into Mongo DB
 router.post('/', async(req, res) => {
     const pilot = new Pilot({
-        humedadSensor1: req.body.humedadSensor1,
-        humedadSensor2: req.body.humedadSensor2
+        nodo: req.body.nodo,
+        humedad: req.body.humedad
     });
     try {
         const savedPilot = await pilot.save();
@@ -52,13 +50,13 @@ router.delete('/:pilotId', async(res, req) => {
 router.patch('/:pilotId', async (req, res) => {
     try {
         const updatedPilot = await Pilot.updateOne({ _id: req.params.pilotId }, { $set: {
-            humedadSensor1: req.body.humedadSensor1
+            nodo: req.body.nodo,
+            humedad: req.body.humedad
         }});
         res.json(updatedPilot);        
     } catch (err) {
         res.json({ message: err });
-    }
-    
+    }    
 });
 
 module.exports = router;
