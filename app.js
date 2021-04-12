@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 // CONNECT TO MONGODB
-const url = "mongodb://localhost:27017/agroriego";
+const url = "mongodb://localhost:28017/agroriego";
 mongoose.connect(
     url, 
     { useNewUrlParser: true }, 
