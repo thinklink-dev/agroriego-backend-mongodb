@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-require('dotenv/config');
+//require('dotenv/config');
 
 // Middlewares
 app.use(bodyParser.json());
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 // CONNECT TO MONGODB
-const url = "mongodb://localhost:28017/agroriego";
+const url = "mongodb://localhost:27017/agroriego";
 mongoose.connect(
     url, 
     { useNewUrlParser: true }, 
