@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
 });
 
 // CONNECT TO MONGODB
-// const url = "mongodb://localhost:27017/agroriego"; /* Local */
-const url = "mongodb+srv://pilotuser:*agropilot*@mongo-onepe.dymvq.mongodb.net/agroriego?retryWrites=true&w=majority";
+const url = "mongodb://localhost:28017/agroriego"; /* Local */
+// const url = "mongodb+srv://pilotuser:*agropilot*@mongo-onepe.dymvq.mongodb.net/agroriego?retryWrites=true&w=majority";
 mongoose.connect(
     url, 
     { useNewUrlParser: true }, 
