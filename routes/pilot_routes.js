@@ -1,62 +1,33 @@
 const express = require('express');
-const Pilot = require('../models/Pilot');
 const router = express.Router();
+const mysqlConnection = require('../db/database.js');
 
-// Get data from Mongo DB
-router.get('/', async(req, res) => {
-    try {
-        const pilot = await Pilot.find();
-        res.json(pilot);
-    } catch (err) {
-        res.json({ message: err });
-    }
-});
-
-// Get a specific data from Mongo DB
-router.get('/:pilotId', async(req, res) => {
-    try {
-        const pilot = await Pilot.findById(req.params.pilotId);
-        res.json(pilot);    
-    } catch (err) {
-        res.json({ message: err });
-    }       
-});
-
-// Insert Data into Mongo DB
-router.post('/', async(req, res) => {
-    const pilot = new Pilot({
+// Insert Sensor Humidity Data
+router.post('/pilot', (req, res) => {
+    let data = {
         nodo: req.body.nodo,
         humedad: req.body.humedad
+    };
+    let sql = "INSERT INTO pilots SET ?";
+    mysqlConnection.query(sql, data, (err,  results) => {
+        if (err) throw err;
+        res.send(JSON.stringify({
+            "status": 200,
+            "error": null,
+            "response": results
+        }));
     });
-    try {
-        const savedPilot = await pilot.save();
-        res.json(savedPilot);
-    } catch (err) {
-        res.json({ message: err });
-    } 
 });
 
-// Delete data from Mongo DB
-router.delete('/:pilotId', async(res, req) => {
-    try {
-        const removedPilot = await Pilot.remove({ _id: req.params.pilotId });
-        res.json(removedPilot);
-    } catch (err) {
-        res.json({ message: err });
-    }
-});
-
-// Update data
-router.patch('/:pilotId', async (req, res) => {
-    try {
-        const updatedPilot = await Pilot.updateOne({ _id: req.params.pilotId }, { $set: {
-            nodo: req.body.nodo,
-            humedad: req.body.humedad
-        }});
-        res.json(updatedPilot);        
-    } catch (err) {
-        res.json({ message: err });
-    }    
-});
-
-module.exports = router;
+// GET All data from Sensor Humidity
+router.get('/pilot', (req, res) => {
+    mysqlConnection.query('SELECT * FROM pilots', (err, rows, fields) => {
+      if(!err) {
+        res.json(rows);
+      } else {
+        console.log(err);
+      }
+    });  
+  });
+  
+  module.exports = router;

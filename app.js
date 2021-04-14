@@ -1,32 +1,15 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
-//require('dotenv/config');
 
 // Middlewares
-app.use(bodyParser.json());
-app.use(cors());
+app.set('port', process.env.PORT || 3000);
+app.use(express.json());
 
-// Import Routes
-const pilotRoute = require('./routes/pilot_routes');
-app.use('/pilot', pilotRoute);
+// Routes
+app.use(require('./routes/pilot_routes.js'));
 
 
-// ROUTES
-app.get('/', (req, res) => {
-    res.send('AgroRIEGO Backend Home');
+// Start WebService
+app.listen(app.get('port'), () => {
+    console.log('Agroriego Pilot WebService listening on port 3000');
 });
-
-// CONNECT TO MONGODB
-const url = "mongodb://localhost/agroriego"; /* Local */
-// const url = "mongodb+srv://pilotuser:*agropilot*@mongo-onepe.dymvq.mongodb.net/agroriego?retryWrites=true&w=majority";
-mongoose.connect(
-    url, 
-    { useNewUrlParser: true }, 
-    () => console.log('Connected to Mongo DB')
-);
-
-// LISTENING TO THE SERVER
-app.listen(3000);
