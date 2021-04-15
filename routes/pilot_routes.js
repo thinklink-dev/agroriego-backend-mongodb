@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mysqlConnection = require('../db/database.js');
+const mysqlConnection = require('../db/mariadb.js');
 
 // Insert Sensor Humidity Data
 router.post('/pilot', (req, res) => {
