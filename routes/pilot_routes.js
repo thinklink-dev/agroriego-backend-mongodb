@@ -25,12 +25,9 @@ const mysqlConnection = require('../db/mariadb.js');
 router.post('/pilot', async function(req, res) {
   try {
 
-    const data = {
-      nodo: req.body.nodo,
-      humedad: req.body.humedad
-    };
-    const sqlQuery = 'INSERT INTO pilots SET ?';
-    const result = await pool.query(sqlQuery, data);
+    const { nodo, humedad } = req.body;
+    const sqlQuery = 'INSERT INTO pilots (nodo, humedad) VALUES (?,?)';
+    const result = await pool.query(sqlQuery, [nodo, humedad]);
     res.status(200).json({ userId: result.insertId });
 
   } catch (error) {
