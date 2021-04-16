@@ -53,7 +53,7 @@ router.post('/pilot', async function(req, res) {
 router.get('/pilot', async function (req, res) {
   try {
     
-    const sqlQuery = 'SELECT * FROMN pilots';
+    const sqlQuery = 'SELECT * FROM pilots';
     const rows = await pool.query(sqlQuery);
     res.status(200).json(rows);
 
