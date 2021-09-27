@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/pilot', async function(req, res) {
   try {
     
+    const recomendacion = "";
     if (req.body.humedad <= 50) {
       recomendacion = "DEBE regar el cultivo";
     } else {
