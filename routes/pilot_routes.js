@@ -7,14 +7,13 @@ const router = express.Router();
 router.post('/pilot', async function(req, res) {
   try {
     
-    const riego = "";
     if (humedad <= 50) {
-      riego = "DEBE regar el cultivo";
+      recomendacion = "DEBE regar el cultivo";
     } else {
-      riego = "No es necesario regar el cultivo"
+      recomendacion = "No es necesario regar el cultivo"
     }
 
-    const { nodo, humedad, riego } = req.body;
+    const { nodo, humedad, recomendacion } = req.body;
     const sqlQuery = 'INSERT INTO pilots (nodo, humedad, recomendacion) VALUES (?,?,?)';
     const result = await pool.query(sqlQuery, [nodo, humedad, recomendacion]);
     res.status(200).json({ userId: result.insertId });
