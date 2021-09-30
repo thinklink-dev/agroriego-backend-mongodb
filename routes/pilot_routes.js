@@ -56,11 +56,11 @@ router.get('/pilot-2', async function (req, res) {
   }
 });
 
-// GET Sensor Data - Last 6 values
+// GET Sensor Data - Last 12 values
 router.get('/pilot-6', async function (req, res) {
   try {
     
-    const sqlQuery = 'SELECT * FROM pilots ORDER BY date DESC LIMIT 6';
+    const sqlQuery = 'SELECT * FROM pilots ORDER BY date DESC LIMIT 12';
     const rows = await pool.query(sqlQuery);
     res.status(200).json(rows);
 
