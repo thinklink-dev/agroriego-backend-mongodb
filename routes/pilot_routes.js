@@ -60,7 +60,7 @@ router.get('/pilot-2', async function (req, res) {
 router.get('/pilot-6', async function (req, res) {
   try {
     
-    const sqlQuery = 'SELECT * FROM pilots ORDER BY date DESC LIMIT 12';
+    const sqlQuery = 'SELECT * FROM pilots ORDER BY date ASC LIMIT 12';
     const rows = await pool.query(sqlQuery);
     res.status(200).json(rows);
 
