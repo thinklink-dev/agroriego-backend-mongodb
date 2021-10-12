@@ -14,6 +14,11 @@ router.post('/pilot', async function(req, res) {
       recomendacion = "No es necesario regar el cultivo";
     }
 
+    let humidity = 100;
+    if (req.body.humedad >= 100) {
+      req.body.humedad = humidity;
+    } 
+
     const { nodo, humedad } = req.body;
     const sqlQuery = 'INSERT INTO pilots (nodo, humedad, recomendacion) VALUES (?,?,?)';
     const result = await pool.query(sqlQuery, [nodo, humedad, recomendacion]);
