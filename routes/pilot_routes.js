@@ -6,7 +6,13 @@ const router = express.Router();
 // POST Sensor Data
 router.post('/pilot', async function(req, res) {
   try {
-    
+        
+    // Linear Regression for Humidity
+    let hum = req.body.humedad;
+    let linear_hum = 100 - (0.285714 * hum);
+    let rounded_hum = Math.round(linear_hum);
+    req.body.humedad = rounded_hum;
+
     let recomendacion = "";
     if (req.body.humedad <= 50) {
       recomendacion = "DEBE regar el cultivo";
@@ -14,10 +20,10 @@ router.post('/pilot', async function(req, res) {
       recomendacion = "No es necesario regar el cultivo";
     }
 
-    let humidity = 100;
-    if (req.body.humedad >= 100) {
-      req.body.humedad = humidity;
-    } 
+    // let humidity = 100;
+    // if (req.body.humedad >= 100) {
+    //   req.body.humedad = humidity;
+    // } 
 
     const { nodo, humedad } = req.body;
     const sqlQuery = 'INSERT INTO pilots (nodo, humedad, recomendacion) VALUES (?,?,?)';
